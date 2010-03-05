@@ -1,0 +1,8 @@
+lib
+include
+bin
+*.pyc
+*~
+.Python
+dev.db
+.svn
