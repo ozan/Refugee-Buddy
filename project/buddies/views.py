@@ -3,10 +3,11 @@ from urllib2 import urlopen
 import simplejson
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
 
 from forms import ProfileForm, SearchForm
@@ -66,10 +67,15 @@ def profile(request, pk=None):
     """
     if pk:
         # if editing, ensure that it is the correct user
-        if not pk == request.user.pk:
+        if not int(pk) == request.user.pk:
             return HttpResponseForbidden()
-        instance = request.user.buddy
+        instance = request.user.buddy.all()[0]
     else:
+        try:
+            Buddy.objects.get(user=request.user)
+            return HttpResponseForbidden()
+        except Buddy.DoesNotExist:
+            pass
         instance = None
         
     form = ProfileForm(request.POST or None, instance=instance)
@@ -78,7 +84,7 @@ def profile(request, pk=None):
         obj.user = request.user
         obj.save()
         messages.success(request, 'Profile details have been updated')
-        return redirect('.')
+        return redirect(reverse('buddies_detail', kwargs={'pk': obj.pk}))
 
     return render_to_response('buddies/profile.html', {
         'buddy': instance,
