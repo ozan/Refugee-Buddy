@@ -100,6 +100,14 @@ def profile(request, pk=None):
     }, context_instance=RequestContext(request))
 
 @login_required
+def my_detail(request):
+    try:
+        buddy = request.user.buddy.all()[0]
+        return detail(request, buddy.pk)
+    except IndexError:
+        return HttpResponseForbidden()
+
+@login_required
 def detail(request, pk):
     """
     View a buddy profile

@@ -36,13 +36,13 @@
 		</div>
 		<div class="grid_12">
 			<div class="grid_12 logo-wrapper alpha omega">
-					<strong class="logo"><a href="#"><img src="{{ MEDIA_URL }}images/logo.png" alt="Refugee Buddy Logo"></a></strong>
+					<strong class="logo"><a href="{% url home %}"><img src="{{ MEDIA_URL }}images/logo.png" alt="Refugee Buddy Logo"></a></strong>
 			</div>
 			<div class="grid_12 main-menu alpha omega">	
 				<ul>
 					<li class="first"><a href="{% url home %}">Home</a></li>
-					<li>{% if request.user.is_authenticated %}<a href="#">My Profile</a>{% endif %}</li>
-					<li><a href="#">Contact Us</a></li>
+					<li>{% if request.user.is_authenticated %}<a href="{% if buddy %}{% url buddies_detail pk=buddy.pk %}{% else %}{% url buddies_create %}{% endif %}">My Profile</a>{% else %}<a href="{% url signup %}">Sign up</a>{% endif %}</li>
+					<li><a href="{% url contact %}">Contact Us</a></li>
 				</ul>
 			</div>
 		</div>
@@ -64,11 +64,11 @@
 			<!-- #content -->
 			<div id="footer" class="grid_12 footer-menu alpha omega">
 				 <ul>
-					<li><a href="#" target="_blank">Terms and Conditions</a></li>
-					<li><a href="#" target="_blank">Disclaimer</a></li>
-					<li><a href="#" target="_blank">Privacy Policy </a></li>
-					<li><a href="#" target="_blank">Copyright</a></li>
-					<li><a href="#">Contact Us</a></li>
+					<li><a href="/" target="_blank">Terms and Conditions</a></li>
+					<li><a href="/" target="_blank">Disclaimer</a></li>
+					<li><a href="/" target="_blank">Privacy Policy </a></li>
+					<li><a href="/" target="_blank">Copyright</a></li>
+					<li><a href="{% url contact %}">Contact Us</a></li>
 				</ul>
 			</div>
 		</div>

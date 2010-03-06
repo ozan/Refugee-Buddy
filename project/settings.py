@@ -104,6 +104,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(PROJECT_ROOT, '../dev-log/emails') 
 DEFAULT_FROM_EMAIL = 'test@email.com'
 
+LOGIN_REDIRECT_URL = '/buddies/profiles/'
+
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
     'django.core.context_processors.debug',
