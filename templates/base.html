@@ -40,8 +40,8 @@
 			</div>
 			<div class="grid_12 main-menu alpha omega">	
 				<ul>
-					<li class="first"><a href="#">Home</a></li>
-					<li><a href="#">My Profile</a></li>
+					<li class="first"><a href="{% url home %}">Home</a></li>
+					<li>{% if request.user.is_authenticated %}<a href="#">My Profile</a>{% endif %}</li>
 					<li><a href="#">Contact Us</a></li>
 				</ul>
 			</div>
