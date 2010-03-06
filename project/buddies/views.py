@@ -76,7 +76,9 @@ def profile(request, pk=None):
     
     form = ProfileForm(request.POST or None, instance=instance)
     if form.is_valid():
-        form.save()
+        obj = form.save(commit=False)
+        obj.user = request.user
+        obj.save()
         messages.success(request, 'Profile details have been updated')
         return redirect('.')
 
