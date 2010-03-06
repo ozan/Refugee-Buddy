@@ -4,14 +4,16 @@ import simplejson
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.core.mail import send_mail
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
+from django.template.loader import render_to_string
 
-from forms import ProfileForm, SearchForm
-from models import Buddy
+from forms import ProfileForm, SearchForm, MessageForm, MessageResponseForm
+from models import Buddy, ContactLog
 
 from library.geo import points2distance
 
@@ -33,8 +35,8 @@ def search(request):
     """
     # prevent access by non-organisations
     try:
-        organisation = request.user.organisation
-    except AttributeError:
+        organisation = request.user.organisation.all()[0]
+    except IndexError:
         return HttpResponseForbidden()
     
     form = SearchForm(request.POST or None)
@@ -100,10 +102,61 @@ def detail(request, pk):
     # if not viewing own profile, restrict to organisations
     if not request.user.pk == pk:
         try:
-            organisation = request.user.organisation
-        except AttributeError:
+            organisation = request.user.organisation.all()[0]
+        except IndexError:
             return HttpResponseForbidden()
+            
+    try:
+        organisation = request.user.organisation.all()[0]
+    except IndexError:
+        organisation = None
+    if organisation:
+        message_form = MessageForm(request.POST or None)
+        if message_form.is_valid():
+            contact = ContactLog(**{
+                'service': organisation,
+                'buddy': buddy,
+                'message': message_form.cleaned_data['message']
+            })
+            contact.save()
+            subject = 'You have a new message from refugeebuddy.org'
+            message = render_to_string('buddies/email/buddy_message.txt', {'contact': contact})
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [buddy.email])
+            messages.success(request, 'Your message has been sent')
+            return redirect('.')
 
     return render_to_response('buddies/detail.html', {
-        'buddy': buddy
+        'buddy': buddy,
+        'message_form': message_form
+    }, context_instance=RequestContext(request))
+
+@login_required
+def message_response(request, action):
+    """
+    As a buddy, reply to a message sent by a refugee organisation
+    """
+    key = request.GET.get('key')
+    contact = get_object_or_404(ContactLog, key=key)
+    if not contact.buddy.user == request.user:
+        return HttpResponseForbidden('You must be the buddy to whom this message was sent. If you are, please log in')
+        
+    if contact.response:
+        pass # do something if there's already been a response
+    
+    contact.accepted = {'accept': True, 'reject': False}[action]
+    contact.save()
+    
+    form = MessageResponseForm(request.POST or None)
+    if form.is_valid():
+        contact.response = form.cleaned_data['message']
+        contact.save()
+        subject = 'You have a response from refugeebuddy.org'
+        message = render_to_string('buddies/email/buddy_message_response.txt', {'contact': contact})
+        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [contact.service.user.email])
+        messages.success(request, 'Thanks for your response')
+        return redirect('/')
+        
+    
+    return render_to_response('buddies/message_response.html', {
+        'form': form
     }, context_instance=RequestContext(request))

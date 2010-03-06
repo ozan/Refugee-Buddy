@@ -1,4 +1,6 @@
 from django.conf import settings
+from uuid import uuid1
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -79,24 +81,26 @@ class Organisation(BaseModel):
     """
     An refugee organisation registered with the Refugee Buddy service
     """
+    name = models.CharField(max_length=80)
     user = models.ForeignKey(User, related_name="organisation")
 
     class Meta(BaseModel.Meta):
         pass
 
     def __unicode__(self):
-        return NotImplementedError
+        return self.name
 
 
 class ContactLog(BaseModel):
     """
     An instance of contact being made by a service to a buddy
     """
-    service     = models.ForeignKey(User, related_name="contacts")
+    service     = models.ForeignKey(Organisation, related_name="contacts")
     buddy       = models.ForeignKey(Buddy, related_name="contacts")
     message     = models.TextField()
-    accepted    = models.BooleanField(default=True)
+    accepted    = models.BooleanField(default=False)
     response    = models.TextField(blank=True)
+    key         = models.CharField(max_length=32, db_index=True, default=lambda: uuid1().hex)
 
     class Meta(BaseModel.Meta):
         pass
