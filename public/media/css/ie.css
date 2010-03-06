@@ -1,0 +1,3 @@
+body {
+	width:expression(document.documentElement.clientWidth < 940 ? "940px" : "auto");
+}
