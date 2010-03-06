@@ -3,7 +3,7 @@ from django.conf import settings
 def setting_values(request):
     try:
         buddy = request.user.buddy.all()[0]
-    except AttributeError:
+    except (AttributeError, IndexError):
         buddy = None
     return {
         'SITE_DOMAIN': getattr(settings, 'SITE_DOMAIN', None),
