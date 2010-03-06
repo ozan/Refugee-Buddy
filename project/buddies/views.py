@@ -69,9 +69,10 @@ def profile(request, pk=None):
     """
     if pk:
         # if editing, ensure that it is the correct user
-        if not int(pk) == request.user.pk:
+        try:
+            instance = request.user.buddy.get(pk=pk)
+        except Buddy.DoesNotExist:
             return HttpResponseForbidden()
-        instance = request.user.buddy.all()[0]
     else:
         try:
             Buddy.objects.get(user=request.user)
@@ -80,7 +81,7 @@ def profile(request, pk=None):
             pass
         instance = None
     
-    if not instance and request.user.id:
+    if not instance and request.user.is_authenticated():
         initial = {'name': request.user.username.replace('_', ' ')}
     else:
         initial = None
@@ -99,13 +100,23 @@ def profile(request, pk=None):
     }, context_instance=RequestContext(request))
 
 @login_required
+def my_detail(request):
+    try:
+        buddy = request.user.buddy.all()[0]
+        return detail(request, buddy.pk)
+    except IndexError:
+        return HttpResponseForbidden()
+
+@login_required
 def detail(request, pk):
     """
     View a buddy profile
     """
     buddy = get_object_or_404(Buddy, pk=pk)
     # if not viewing own profile, restrict to organisations
-    if not request.user.pk == pk:
+    try:
+        request.user.buddy.get(pk=pk)
+    except Buddy.DoesNotExist:
         try:
             organisation = request.user.organisation.all()[0]
         except IndexError:
@@ -129,6 +140,8 @@ def detail(request, pk):
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [buddy.email])
             messages.success(request, 'Your message has been sent')
             return redirect('.')
+    else:
+        message_form = None
 
     return render_to_response('buddies/detail.html', {
         'buddy': buddy,
