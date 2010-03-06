@@ -9,7 +9,9 @@ RADIUS_CHOICES = (
 )
 
 class ProfileForm(forms.ModelForm):
+
     class Meta:
+        exclude = ('user',)
         model = Buddy
         
 class SearchForm(forms.Form):
