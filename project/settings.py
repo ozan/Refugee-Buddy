@@ -91,8 +91,12 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     
+    'geolocation',
+    
     'library',
-        
+    
+    'buddies'
+    
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
@@ -109,6 +113,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 environ = 'development'
+
+geolocation_context = {
+    "GEOLOCATION_DEFAULT_ADMINZOOM": 5,
+    "GEOLOCATION_DEFAULT_POSITION": ("151.207114", "-33.867139") # Sydney
+}
 
 GOOGLE_MAPS_API_KEY = {
     'staging': 'ABQIAAAAOAAK0DkG1Zh3gJ_8rsNzUxT61KVOqBEupQE8pOiFbiAHOICuIhSr52u8hQ2U5nQPX3u0UQcA9XK2qg', #destaging.com

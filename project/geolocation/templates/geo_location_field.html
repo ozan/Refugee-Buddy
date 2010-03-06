@@ -1,0 +1,41 @@
+<div class="js-missing-msg">
+  <p>Checking for javascript libraries....</p>
+</div>
+
+<table>
+  <tr style="display: none;" id="{{ attrs.id }}_geo_location_field_encoding_msg">
+    <td style="font-weight:bold; color: red;">Geo encoding your address, please wait....</td>
+  </tr>
+  <tr>
+    <td>
+
+      <label style="width:100%">Enter a location or address</label><br>
+      <input type="text" id="{{ attrs.id }}_geo_location_field_address" name="{{ name }}_geo_location_field_address" class="vLargeTextField">
+      <input type="text" id="{{ attrs.id }}" style="display:none;"><!-- To handle the admins focus call on the first field. -->
+    </td>
+  </tr>
+  <tr>
+    <td class="help">Click outside the address field to geoencode your address, or <a href="javascript:void()" id="{{ attrs.id }}_geo_location_field_force_update">here to force an update.</a></td>
+
+  </tr>
+  <tr>
+    <td><label>Latitude:</label><span id="{{ attrs.id }}_geo_location_field_latitude"></span></td>
+  </tr>
+  <tr>
+    <td><label>Longitude:</label><span id="{{ attrs.id }}_geo_location_field_longitude"></span></td>
+  </tr>
+  <tr>
+
+    <td>
+      <p class="help">Fine-tune your location by dragging the map marker</p>
+      <div id="{{ attrs.id }}_geo_location_map_canvas" style="width: 600px; height: 300px;"></div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" id="{{ attrs.id }}_geo_location_field_hidden_json" name="{{ name }}" value="" />
+<script type="text/javascript">
+$(document).ready(function(){
+  initialize_geo_location_field("{{ attrs.id }}", "{{ value.address|escapejs }}", "{{ value.latitude|escapejs }}", "{{ value.longitude|escapejs }}", "{% if value.adminzoom %}{{ value.adminzoom|escapejs }}{% else %}{{ GEOLOCATION_DEFAULT_ADMINZOOM }}{% endif %}", "{{ GEOLOCATION_DEFAULT_POSITION.1 }}", "{{ GEOLOCATION_DEFAULT_POSITION.0 }}");
+});
+</script>
+
