@@ -71,9 +71,7 @@ def profile(request, pk=None):
         instance = request.user.buddy
     else:
         instance = None
-    
-    print request.POST.items()
-    
+        
     form = ProfileForm(request.POST or None, instance=instance)
     if form.is_valid():
         obj = form.save(commit=False)
