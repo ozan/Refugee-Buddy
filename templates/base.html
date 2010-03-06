@@ -31,7 +31,7 @@
 <div id="container">
 	<div class="container_12 clearfix">
 		<div id="login-bar" class="grid_2 prefix_10 omega">
-			<div id="account-tools">Account Settings | Log out  Login
+			<div id="account-tools">{% if request.user.is_authenticated %}<a href="{% url logout %}">Log out</a>{% else %}<a href="{% url login %}">Login</a>{% endif %}
 			</div>
 		</div>
 		<div class="grid_12">
