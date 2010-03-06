@@ -103,9 +103,14 @@ def profile(request, pk=None):
 def my_detail(request):
     try:
         buddy = request.user.buddy.all()[0]
-        return detail(request, buddy.pk)
+        return redirect('buddies_detail', kwargs={'pk': buddy.pk})
     except IndexError:
-        return HttpResponseForbidden()
+        try:
+            organisation = request.user.organisation.all()[0]
+            return redirect('buddies_search')
+        except IndexError:
+            return HttpResponseForbidden('Not a buddy or an organisation. Who are you exactly?')
+        
 
 @login_required
 def detail(request, pk):
