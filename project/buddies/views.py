@@ -79,8 +79,13 @@ def profile(request, pk=None):
         except Buddy.DoesNotExist:
             pass
         instance = None
+    
+    if not instance and request.user.id:
+        initial = {'name': request.user.username.replace('_', ' ')}
+    else:
+        initial = None
         
-    form = ProfileForm(request.POST or None, instance=instance)
+    form = ProfileForm(request.POST or None, instance=instance, initial=initial)
     if form.is_valid():
         obj = form.save(commit=False)
         obj.user = request.user
