@@ -10,7 +10,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', direct_to_template, {'template': 'static/home.html'}, name='home'),
     url(r'^contact/$', contact, name='contact'),
-    (r'^static/$', include('library.urls')),
+    (r'^static/', include('library.urls')),
     (r'^accounts/', include('accounts.urls')),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
