@@ -11,10 +11,13 @@
 {% endblock extra_head %}
 
 {% block content %}
-{{ buddy }}{# need to make exist #}
-<form method="post" action="">
-{{ form.as_p }}
-{% csrf_token %}
-<input type="submit" name="submit" value="Submit" />
-</form>
+	<div class="grid_11 block-light alpha omega prefix_1">
+	{{ buddy }}{# need to make exist #}
+
+		<form method="post" action="" >
+		{{ form.as_p }}
+		{% csrf_token %}
+			<input type="submit" name="submit" value="Submit" />
+		</form>
+	</div>
 {% endblock content %}
