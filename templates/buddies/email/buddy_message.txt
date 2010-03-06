@@ -1,0 +1,13 @@
+You have a buddy request from {{ contact.service.name }}
+
+{{ contact.message }}
+
+Please do not reply to this email.
+
+To accept, go to:
+
+http://refugeebuddy.org{% url buddies_response_accept %}?key={{ contact.key }}
+
+To reject, go to:
+
+http://refugeebuddy.org{% url buddies_response_reject %}?key={{ contact.key }}

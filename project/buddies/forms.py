@@ -17,3 +17,16 @@ class ProfileForm(forms.ModelForm):
 class SearchForm(forms.Form):
     location = forms.CharField(max_length=100, required=True)
     radius = forms.ChoiceField(choices=RADIUS_CHOICES)
+    
+    
+class MessageFormBase(forms.Form):
+    message = forms.CharField(widget=forms.Textarea(), required=True)
+    
+    
+class MessageForm(MessageFormBase):
+    pass
+    
+    
+class MessageResponseForm(MessageFormBase):
+    pass
+    
