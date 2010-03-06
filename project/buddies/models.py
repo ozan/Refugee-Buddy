@@ -39,7 +39,7 @@ class Buddy(BaseModel):
     user                = models.ForeignKey(User, related_name="buddy")
 
     class Meta(BaseModel.Meta):
-        pass
+        verbose_name_plural = 'buddies'
 
     def __unicode__(self):
         return self.name
