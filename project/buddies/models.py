@@ -35,6 +35,8 @@ class Buddy(BaseModel):
     experience          = models.TextField(blank=True)
     
     participation_level = models.ManyToManyField(ParticipationLevel, related_name='buddies')
+    
+    user                = models.ForeignKey(User, related_name="buddy")
 
     class Meta(BaseModel.Meta):
         pass
@@ -43,8 +45,21 @@ class Buddy(BaseModel):
         return self.name
 
     def get_absolute_url(self):
-        return self.get_profile().get_absolute_url()
+        return reverse('buddies_detail', {'pk': self.pk})
         
+
+class Organisation(BaseModel):
+    """
+    An refugee organisation registered with the Refugee Buddy service
+    """
+    user = models.ForeignKey(User, related_name="organisation")
+
+    class Meta(BaseModel.Meta):
+        pass
+
+    def __unicode__(self):
+        return NotImplementedError
+
 
 class ContactLog(BaseModel):
     """
