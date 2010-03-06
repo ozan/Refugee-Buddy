@@ -1,7 +1,19 @@
 # Django settings for project project.
 
 import os
+import socket
+
+hostname = socket.gethostname()
+
+try:
+    environ = {
+        'refugeebuddy.org': 'production'
+    }[hostname]
+except KeyError:
+    environ = 'development'
+
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -13,16 +25,28 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(PROJECT_ROOT, '../dev.db'),                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+if environ == 'development':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': os.path.join(PROJECT_ROOT, '../dev.db'),                      # Or path to database file if using sqlite3.
+            'USER': '',                      # Not used with sqlite3.
+            'PASSWORD': '',                  # Not used with sqlite3.
+            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        }
     }
-}
+elif environ == 'production':
+    DATABASES = {
+       'default': {
+           'ENGINE': 'postgresql_psycopg2', #'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+           'NAME': 'refugeebuddy',                      # Or path to database file if using sqlite3.
+           'USER': 'refugeebuddy',                      # Not used with sqlite3.
+           'PASSWORD': 'postgres_Fug33s!!',                  # Not used with sqlite3.
+           'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+           'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        }
+    }
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -113,17 +137,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'library.context_processors.setting_values',
 )
 
-environ = 'development'
-
 geolocation_context = {
     "GEOLOCATION_DEFAULT_ADMINZOOM": 5,
     "GEOLOCATION_DEFAULT_POSITION": ("151.207114", "-33.867139") # Sydney
 }
 
 GOOGLE_MAPS_API_KEY = {
-    'staging': 'ABQIAAAAOAAK0DkG1Zh3gJ_8rsNzUxT61KVOqBEupQE8pOiFbiAHOICuIhSr52u8hQ2U5nQPX3u0UQcA9XK2qg', #destaging.com
     'development': 'ABQIAAAAOAAK0DkG1Zh3gJ_8rsNzUxTpH3CbXHjuCVmaTc5MkkU4wO1RRhT8l12EFtzX9ndq-OKhzn6UV2XPoA', #127.0.0.1:8000
-    'production': 'ABQIAAAAOAAK0DkG1Zh3gJ_8rsNzUxQZwv8lpTt8m-J-cSGPzMpP1-ajWRR3y_Rj_msas2JhCBfMcNyz3xOTtA', #unsw.edu.au
+    'production': 'ABQIAAAAOAAK0DkG1Zh3gJ_8rsNzUxQYbUU02OONfD68M2kk19HZUAdQRRQhHCAeBexTOgKpZ_QjDjkSc1BhAA', #unsw.edu.au
 }[environ]
 
 # A buddy will be blacklisted after this many organisations flag him/her.
