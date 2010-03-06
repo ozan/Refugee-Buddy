@@ -30,17 +30,19 @@
 <body>
 <div class="main">
 		<div id="content">
-			{% if messages %}
-  			<ul class="messages">
-  			    {% for message in messages %}
-  			    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-					<a href="#close-message" class="close-button">&#x2716;</a>
-					{{ message }}
-				</li>
-  			    {% endfor %}{# message in messages #}
-  			</ul>
+			<div class="inside">
+				{% if messages %}
+  				<ul class="warning-messages">
+  				    {% for message in messages %}
+  			    	<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+						<a href="#close-message" class="close-button">&#x2716;</a>
+						{{ message }}
+					</li>
+  				    {% endfor %}{# message in messages #}
+	  			</ul>
   			{% endif %}{# messages #}
 			{% block content %}{% endblock %}
+			</div>
 		</div><!-- #content -->
             <div id="footer">
 				 <div class="footer-menu">
