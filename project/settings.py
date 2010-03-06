@@ -38,14 +38,14 @@ if environ == 'development':
     }
 elif environ == 'production':
     DATABASES = {
-       'default': {
-           'ENGINE': 'postgresql_psycopg2', #'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-           'NAME': 'refugeebuddy',                      # Or path to database file if using sqlite3.
-           'USER': 'refugeebuddy',                      # Not used with sqlite3.
-           'PASSWORD': 'postgres_Fug33s!!',                  # Not used with sqlite3.
-           'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-           'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-        }
+    'default': {
+        'ENGINE': 'postgresql_psycopg2', #'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'refugeebuddy',                      # Or path to database file if using sqlite3.
+        'USER': 'refugeebuddy',                      # Not used with sqlite3.
+        'PASSWORD': 'postgres_Fug33s!!',                  # Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        }
     }
 
 # Local time zone for this installation. Choices can be found here:
