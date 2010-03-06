@@ -1,0 +1,9 @@
+Contact form submission from: {{ name }} <{{ email }}>
+
+{% if subject %}
+Subject: {{ subject }}
+{% endif %}
+
+{{ message }}
+
+Please do not reply to this email.

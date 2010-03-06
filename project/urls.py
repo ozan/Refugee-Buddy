@@ -2,12 +2,15 @@ from django.conf import settings
 from django.conf.urls.defaults import *
 from django.contrib import admin
 
-from library.views import home
+from library.views import home, faq
+from contact.views import contact
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', home, name='home'),
+    url(r'^faq/$', faq, name='faq'),
+    url(r'^contact/$', contact, name='contact'),
     (r'^accounts/', include('accounts.urls')),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),

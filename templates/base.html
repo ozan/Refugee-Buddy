@@ -29,7 +29,11 @@
 </head>
 <body>
 	<div id="container" class="container_12">
-		<div id="header" class="grid_12"></div><!-- #header .grid_12 -->
+		<div id="header" class="grid_12">
+		    <a href="{% url home %}">Home</a> | 
+		    <a href="{% url faq %}">FAQ</a> | 
+		    <a href="{% url contact %}">Contact</a>
+		</div><!-- #header .grid_12 -->
 		<div class="clear" /></div>
 		<div id="content">
 			{% if messages %}
