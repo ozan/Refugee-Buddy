@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
+{% block extra_head %}
+<script type="text/javascript" src="http://www.google.com/jsapi?key={{ GOOGLE_MAPS_API_KEY }}"></script>
+<script type="text/javascript" charset="utf-8">
+	google.load("maps", "2.x");
+</script>
+<script type="text/javascript" src='{{ MEDIA_URL }}js/geo_location_field.js'></script>
+{% endblock extra_head %}
+
 {% block content %}
 {{ buddy }}
 {{ form.as_p }}
