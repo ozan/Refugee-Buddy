@@ -6,5 +6,19 @@
 {% endblock extra_head %}
 
 {% block content %}
-{{ buddies_in_range }}
+
+{# show search form #}
+<form action="" method="post">
+	{{ form.as_p }}
+	{% csrf_token %}
+	<input type="submit" value="search" />
+</form>
+
+{# output buddies #}
+{% for buddy in buddies_in_range %}
+{{ buddy }}
+{% empty %}
+nobody!
+{% endfor %}
+	
 {% endblock content %}
