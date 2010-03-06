@@ -125,3 +125,7 @@ GOOGLE_MAPS_API_KEY = {
     'development': 'ABQIAAAAOAAK0DkG1Zh3gJ_8rsNzUxTpH3CbXHjuCVmaTc5MkkU4wO1RRhT8l12EFtzX9ndq-OKhzn6UV2XPoA', #127.0.0.1:8000
     'production': 'ABQIAAAAOAAK0DkG1Zh3gJ_8rsNzUxQZwv8lpTt8m-J-cSGPzMpP1-ajWRR3y_Rj_msas2JhCBfMcNyz3xOTtA', #unsw.edu.au
 }[environ]
+
+# A buddy will be blacklisted after this many organisations flag him/her.
+BUDDY_BLACKLIST_THRESHOLD = 1
+

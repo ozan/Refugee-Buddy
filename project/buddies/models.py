@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -46,6 +47,32 @@ class Buddy(BaseModel):
 
     def get_absolute_url(self):
         return reverse('buddies_detail', {'pk': self.pk})
+
+
+class BuddyBlacklisting(models.Model):
+    """
+    A record that an organisation has flagged (i.e. "blacklisted")
+    a particular registered buddy.
+    """
+    service = models.ForeignKey(User, related_name="blacklistings")
+    buddy   = models.ForeignKey(Buddy, related_name="blacklistings")
+    
+    def __unicode__(self):
+        return u'%s blacklisted by %s' % (self.service.username, self.buddy.name)
+    
+    def save(self, *args, **kwargs):
+        is_new = True
+        if self.pk:
+            try:
+                BuddyBlacklisting.objects.get(pk=self.pk)
+                is_new = False
+            except BuddyBlacklisting.DoesNotExist:
+                pass
+        super(BuddyBlacklisting, self).save(*args, **kwargs)
+        
+        if is_new and self.buddy.blacklistings.count() == settings.BUDDY_BLACKLIST_THRESHOLD:
+            pass # do stuff here in response to a buddy being blacklisted,
+                 # e.g. e-mail the buddy to tell him/her the bad news.
         
 
 class Organisation(BaseModel):
