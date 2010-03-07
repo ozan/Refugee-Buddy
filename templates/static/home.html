@@ -13,14 +13,14 @@
     	                        <h3>Refugee Buddy is a way for you to welcome people to your community from other cultures and countries.</h3>
                       
                             </div>
-                            <img src="{{ MEDIA_URL }}images/registerbutton.png" alt="Get Involved Now"/>
+                            <a href="{% url signup %}"><img src="{{ MEDIA_URL }}images/registerbutton.png" alt="Get Involved Now"/></a>
                         	 
                            
                             <h4>Questions</h4>
                             <ul>
-                            <li>How can I help?</li>
-                            <li>How does it work?</li>
-                            <li>Where can I help?</li>
+                            <li><a href="{% url about %}">How can I help?</a></li>
+                            <li><a href="{% url about %}">How does it work?</a></li>
+                            <li><a href="{% url about %}">Where can I help?</a></li>
                             </ul>
                            <!-- <p>You can also audit the installation of your Google Analytics Tracking Code and more tools are coming soon.</p> -->
                             
