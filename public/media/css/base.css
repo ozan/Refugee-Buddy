@@ -603,13 +603,16 @@ margin: 0!important;
        height: 31px;
        font-size: 0;
 }
+/* Buddy Search Form */
+
+UL.buddy-search-form li {display: inline;margin-right:10px;}
 
 /* Search Results table */
 
-.search-results table {width:90%;font-size:12px;margin:20px 10px;line-height:2.2;}
+.search-results table {width:98%;font-size:12px;margin:20px 10px;line-height:2.2;}
 .search-results table thead tr td{font-weight:bold;padding-bottom:10px;}
 .search-results table tr td a {color:#333b3e;}
-.search-results table tbody tr.row-odd {background:#eee;}
+.search-results table tbody tr.row-odd {background:#e1e1e1;}
 
 
 

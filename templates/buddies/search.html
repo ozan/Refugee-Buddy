@@ -9,12 +9,13 @@
 {% block content %}
 
 {# show search form #}
+<ul class="buddy-search-form">
 <form action="" method="post">
-	{{ form.as_p }}
+	{{ form.as_ul }}
 	{% csrf_token %}
 	<input type="submit" value="search" />
 </form>
-
+</ul>
 {# output buddies #}
 {% for buddy in buddies_in_range %}
 {{ buddy }}
@@ -26,7 +27,7 @@ nobody!
 	<table>
 		<thead>
 			<tr>
-				<td class="row name"><a href="#">Full Name</a></td>
+				<td class="row name">Full Name</td>
 				<td class="row age">Age</td>
 				<td class="row email">Email</td>
 				<td class="row phone">Phone</td>
