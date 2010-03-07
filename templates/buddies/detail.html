@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{ buddy }}
 
 {% if message_form %}
+<p>This page allows you to send {{ buddy }} a message,
+	requesting him to volunteer for you.
+	</p>
+
+<p>In the box below, please write a short description of
+	what you would like {{ buddy }} to do. When you click <em>submit</em>,
+	the user will be sent an email, which they can either accept or decline.
+</p>
+
 <form method="post" action="">
 {{ message_form.as_p }}
 {% csrf_token %}
