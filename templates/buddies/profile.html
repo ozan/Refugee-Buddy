@@ -12,7 +12,11 @@
 
 {% block content %}
 	<div class="grid_11 block-light alpha omega prefix_1">
-	{{ buddy }}{# need to make exist #}
+	{% if buddy %}
+	{{ buddy }}
+	{% else %}
+	You don't have a profile yet. Please create one below.
+	{% endif %}
 
 		<form method="post" action="" >
 		{{ form.as_p }}
