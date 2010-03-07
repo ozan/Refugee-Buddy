@@ -78,7 +78,7 @@ def profile(request, pk=None):
             return HttpResponseForbidden()
     else:
         try:
-            Buddy.objects.get(user=request.user)
+            Buddy.objects.get(user__id=request.user.id)
             return HttpResponseForbidden()
         except Buddy.DoesNotExist:
             pass
