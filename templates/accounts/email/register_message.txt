@@ -1,0 +1,18 @@
+Dear {{ first_name }},
+
+Welcome to Refugee Buddy! Your details are:
+
+User name: {{ username }}
+Password: {{ password }}
+
+To log in, go to:
+
+http://refugeebuddy.org/accounts/login/
+
+COPY NEEDED:
+More info about what to expect after signing up goes here.
+
+Regards,
+The Refugee Buddy team.
+
+Please do not reply to this email.

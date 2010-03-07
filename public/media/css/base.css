@@ -82,7 +82,11 @@ body{
 	padding:8px 10px 0 10px;
 }
 
-
+.block-dark ul li{
+	color: #666;
+	font-size:140%;
+	padding:8px 10px 0 10px;
+}
 
 
 
@@ -284,6 +288,7 @@ div#other-menu li a {
 * html .block-white{
 	/*height:115px;*/
 	overflow:visible;
+	
 }
 .block-light h1{
 	font-size:240%;
@@ -299,6 +304,24 @@ div#other-menu li a {
 	font-weight: normal!important;
 	font-style: normal;
 }
+
+.column-0{
+
+width:860px;
+
+float:left;
+
+padding:0 0 10px 5px;
+
+}
+
+.block-light-static h3{
+margin:-5px 0 0 0;
+} 
+
+
+
+
 .block-light h2{
 	font-size:180%;
 	color: #999;
@@ -414,138 +437,112 @@ table.style tr.header {
 * html #footer{height:60px;}
 
 
-/*--form--*/
-.highlight-form{
-	background-color: #ebf8fe;
-	margin: 0 10px 10px 10px;
-	padding: 10px;
-	float: left;
-	width:397px;
-	border: 1px solid #ddd;
-}
-.highlight-form p{
-	padding-left: 0!important;
-}
-.highlight-form .form-element, .highlight-form dl{
-	width: 100%!important;
-	float: right;
-	text-align:right;
-	font-size: 15px;
-	padding-bottom:5px;
-}
-.highlight-form .form-element .form-element-left, .highlight-form dt label.required{
-	float: left;
-	padding-top: 10px;
-}
-.highlight-form input.text, .highlight-form dd input#username, .highlight-form dd input#userpassword {
-padding: 5px;
-width: 290px;
-}
-.highlight-form dl input#submit {
-	background: url(../images/login.png);
-	border: none!important;
-	width:164px ;
-	height: 31px;
-	font-size: 0;
-	margin-bottom:10px;
-}
-.highlight-form form dl ul.errors li {
-	color: red;
-	font-size:12px!important;
-	font-weight:bold!important;
-	background-image: none!important;
-}
-.inside .warning-message {
-	color: red;
-	font-size:12px!important;
-	font-weight:bold!important;
-	text-align:right;
-	}
-.red {
-	color: red;
+/* ----------- My Form ----------- */
+.myform{
+margin:0 auto;
+width:850px;
+padding:14px;
 }
 
-select.select-large{
-	font-size: 18px;
-	width: 100%;
-	margin:10px 0 0 0;
+/* ----------- stylized ----------- */
+#stylized{
+border:solid 2px #ccc;
+background:#ddd;
 }
-.highlight-form span.grey {
-	color: #999!important;
-	font-size: 15px!important;
+#stylized h1 {
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
 }
-.highlight-form h2{
-	font-size:180%;
-	color: #000;
-	margin-top: 0;
-	padding: 0;
+#stylized p{
+font-size:12px;
+color:#666666;
+margin-bottom:20px;
+border-bottom:solid 1px #ccc;
+padding-bottom:10px;
 }
-.highlight-form p.small{
-	font-size: 11px;
-	padding: 0;
-	text-align: right;
+#stylized label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:140px;
+float:left;
+font-size:12px;
 }
-
-/*--login form--*/
-
-div.highlight-form form dl.zend_form dd {
-padding: 5px 0 0 0;	
-}
-
-dl.zend_form {
-	padding: 0!important;
-	margin: 0;
-}
-
-div.highlight-form form dl.zend_form dt {
-	height: 0px!important;
-}
-div.highlight-form form dl.zend_form label.required {
-	padding-top: 15px;
+#stylized .small{
+color:#666666;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
 }
 
-/*--report form--*/
-
-.report-form{
-	background-color: #f8f8f8;
-	margin: 0 10px 10px 10px;
-	padding: 10px;
-	float: left;
-	width:618px;
-	border: 1px solid #ddd;
-}
-.report-form-featured{
-	background-color: #f8e9df;
-	margin: 0 10px 10px 10px;
-	padding: 10px;
-	float: left;
-	width:618px;
-	border: 1px solid #fbae2c;
-}
-.report-form img, .report-form-featured img {
-	float: left;
-}
-.report-form h2, .report-form-featured h2 {
-	padding: 0;
-	margin: 0 0 0 50px;
-	color: #666;
+#stylized input{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #ccc;
+width:200px;
+margin:2px 0 20px 10px;
 }
 
-.report-form p, .report-form-featured p {
-	padding: 0;
-	margin: 10px 0 0 50px;
-	color: #666;
+#stylized textarea {
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #ccc;
+width:200px;
+margin:2px 0 20px 10px;
 }
-.report-form .note, .report-form-featured .note {
-	padding: 0;
-	margin: 10px 0 0 50px;
-	color: #999;
-	border-top: 1px solid #ddd;
+
+#stylized input.inputCheckbox {
+  display: inline;
+  height: auto;
+  width: auto;
+  background-color: transparent;
+  border-width: 0;
+  padding: 0;
+  width: 4px;
 }
-.report-form .note p, .report-form-featured .note p {
-	margin: 10px 0 2px 0;
-	color: #999;
+
+
+#stylized label.styled2 {
+font-size:12px;
+font-weight:100;
+margin:0px;
+float:left;
+
 }
+#stylized button{
+clear:both;
+margin-left:150px;
+width:125px;
+height:31px;
+background:#666666 url(img/button.png) no-repeat;
+text-align:center;
+line-height:31px;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
+}
+
+
+span.required {
+  font-weight: bold;
+  font-size: 12px;
+  color: #ff0000;
+}
+
+span.note {
+  font-weight: bold;
+  font-size: 10px;
+  color: #666666;
+}
+
+
+
+
 /*--banners--*/
 .banners{
 	position:absolute;

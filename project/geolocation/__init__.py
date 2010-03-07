@@ -3,7 +3,10 @@ http://squarefactor.com/words/2009/jan/06/django-custom-model-fields-with-custom
 """
 from django.contrib.admin.widgets import AdminTextareaWidget
 from django.db import models
-from django.utils import simplejson
+try:
+    import simplejson
+except ImportError:
+    from django.utils import simplejson
 from django import forms
 from django.conf import settings
 from django.template.loader import render_to_string

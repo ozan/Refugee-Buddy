@@ -1,17 +1,17 @@
 from django.conf import settings
 from django.conf.urls.defaults import *
 from django.contrib import admin
+from django.views.generic.simple import direct_to_template
 
-from library.views import home, faq, about
 from contact.views import contact
+from library.views import home
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', home, name='home'),
-    url(r'^faq/$', faq, name='faq'),
-    url(r'^about/$', about, name='about'),
     url(r'^contact/$', contact, name='contact'),
+    (r'^static/', include('library.urls')),
     (r'^accounts/', include('accounts.urls')),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),

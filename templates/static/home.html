@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Refugee Buddy{% endblock title %}
+
+{% block content %}
+
+				<div class="grid_6 alpha block-light">
+					<object  width="462" height="290"><param name="movie" value="http://www.youtube.com/v/IWR0tKSQ41U&hl=en_US&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/HyxJsxsmdMQ&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="462" height="290"></embed></object>
+				</div>
+				<div class="grid_6 omega block-light">
+						 
+							<div>
+    	                        <h3>Refugee Buddy is a way for you to welcome people to your community from other cultures and countries.</h3>
+                            </div>
+                            {% if request.user.is_authenticated %}<a href="{% url buddies_my_detail %}"><img src="{{ MEDIA_URL }}images/registerbutton.png" alt="Get Involved Now"/></a>{% else %}<a href="{% url signup %}"><img src="{{ MEDIA_URL }}images/registerbutton.png" alt="Get Involved Now"/></a>{% endif %}
+                        	 
+                           
+                            <h4>Questions</h4>
+                            <ul>
+                            <li><a href="{% url about %}">How can I help?</a></li>
+                            <li><a href="{% url about %}">How does it work?</a></li>
+                            <li><a href="{% url about %}">Where can I help?</a></li>
+                            </ul>
+                           <!-- <p>You can also audit the installation of your Google Analytics Tracking Code and more tools are coming soon.</p> -->
+                            
+				</div>                            
+			</div>
+			<div class="grid_12 block-dark alpha omega">
+				<div class="grid_6 alpha">
+				<h4>Volunteer</h4>
+					<p>Community, Opportunity, Welcome, Meeting, Volunteering, Linking, Local, People, Introduction, Sharing</p>
+				</div>
+				<div class="grid_6 omega">
+				<h4>Core Values</h4>
+<ul><li>A warm welcome<li>Personal relationships<li>Sharing cultures<li>Promoting understanding<li>Local knowledge			</div>
+
+
+{% endblock content %}
+
