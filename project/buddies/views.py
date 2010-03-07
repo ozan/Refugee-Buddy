@@ -141,7 +141,17 @@ def detail(request, pk):
     except IndexError:
         organisation = None
     if organisation:
-        message_form = MessageForm(request.POST or None)
+        message_form = MessageForm(request.POST or None, initial = {'message' : '''Dear <name>,
+
+	Would you like to help out doing .......
+
+	If you are able to help, you would need to be able to ....
+
+	Please reply with your email address and phone number so that we can get in touch with you.
+
+	Kind regards,
+
+	<name>'''})
         if message_form.is_valid():
             contact = ContactLog(**{
                 'service': organisation,
@@ -178,7 +188,18 @@ def message_response(request, action):
     contact.accepted = {'accept': True, 'reject': False}[action]
     contact.save()
     
-    form = MessageResponseForm(request.POST or None)
+    form = MessageResponseForm(request.POST or None, initial={'message' : '''Dear <name>,
+
+Thankyou for your invitation to be part of your project.
+
+I would/would be able to commit to participating. Please contact me on the following:
+
+Phone: 
+Email: 
+
+Kind regards,
+
+<name>'''})
     if form.is_valid():
         contact.response = form.cleaned_data['message']
         contact.save()
