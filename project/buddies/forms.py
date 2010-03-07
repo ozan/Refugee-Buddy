@@ -24,13 +24,13 @@ class SearchForm(forms.Form):
     
     
 class MessageFormBase(forms.Form):
+    pass
+    
+class MessageForm(MessageFormBase):
     message = forms.CharField(widget=forms.Textarea(), required=True)
     
     
-class MessageForm(MessageFormBase):
-    pass
-    
-    
 class MessageResponseForm(MessageFormBase):
-    pass
+    message = forms.CharField(widget=forms.Textarea(), required=True)
+    
     

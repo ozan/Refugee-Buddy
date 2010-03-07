@@ -3,12 +3,12 @@
 {% block title %}log in{% endblock %}
 
 {% block content %}
-			<div class="grid_12  block-light alpha omega">
+
 			<h4>Login</h4>
 <form action="" method="POST">
 	{{ form.as_p }}
 	{% csrf_token %}
 	<input type="submit" value="Log in" />
 </form>
-</div>
+
 {% endblock content %}
