@@ -1,7 +1,10 @@
 from urllib import urlencode
 from urllib2 import urlopen
-import simplejson
-
+try:
+    import simplejson
+except ImportError:
+    from django.utils import simplejson
+    
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
@@ -63,6 +66,7 @@ def search(request):
         'buddies_in_range': buddies_in_range
     }, context_instance=RequestContext(request))
 
+@login_required
 def profile(request, pk=None):
     """
     Create or edit a buddy profile
@@ -75,14 +79,19 @@ def profile(request, pk=None):
             return HttpResponseForbidden()
     else:
         try:
-            Buddy.objects.get(user=request.user)
+            Buddy.objects.get(user__id=request.user.id)
             return HttpResponseForbidden()
         except Buddy.DoesNotExist:
             pass
         instance = None
     
     if not instance and request.user.is_authenticated():
-        initial = {'name': request.user.username.replace('_', ' ')}
+        name = request.user.username.replace('_', ' ')
+        initial = {
+            'name': name,
+            'email': request.user.email,
+            'preferred_name': name.partition(' ')[0]
+        }
     else:
         initial = None
         
@@ -103,13 +112,13 @@ def profile(request, pk=None):
 def my_detail(request):
     try:
         buddy = request.user.buddy.all()[0]
-        return redirect('buddies_detail', kwargs={'pk': buddy.pk})
+        return redirect(reverse('buddies_detail', kwargs={'pk': buddy.pk}))
     except IndexError:
         try:
             organisation = request.user.organisation.all()[0]
-            return redirect('buddies_search')
+            return redirect(reverse('buddies_search'))
         except IndexError:
-            return HttpResponseForbidden('Not a buddy or an organisation. Who are you exactly?')
+            return redirect(reverse('buddies_create'))
         
 
 @login_required

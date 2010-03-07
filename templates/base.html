@@ -31,7 +31,13 @@
 <div id="container">
 	<div class="container_12 clearfix">
 		<div id="login-bar" class="grid_2 prefix_10 omega">
-			<div id="account-tools">Account Settings | Log out  Login
+			<div id="account-tools">
+				{% if user.is_authenticated %}
+				Logged in as {% if buddy %}<a href="{% url buddies_detail buddy.pk %}">{{ user }}</a>{% else %}{{ user }}{% endif %}
+				<strong><a href="{% url logout %}">Log out</a></strong>  
+				{% else %}
+				<strong><a href="{% url login %}">Login</a></strong>
+				{% endif %}
 			</div>
 		</div>
 		<div class="grid_12">
@@ -67,10 +73,10 @@
 			<!-- #content -->
 			<div id="footer" class="grid_12 footer-menu alpha omega">
 				 <ul>
-					<li><a href="/" target="_blank">Terms and Conditions</a></li>
-					<li><a href="/" target="_blank">Disclaimer</a></li>
-					<li><a href="/" target="_blank">Privacy Policy </a></li>
-					<li><a href="/" target="_blank">Copyright</a></li>
+					<li><a href="{% url terms %}">Terms and Conditions</a></li>
+					<li><a href="{% url disclaimer %}">Disclaimer</a></li>
+					<li><a href="{% url privacy %}">Privacy Policy </a></li>
+					<li><a href="{% url copyright %}">Copyright</a></li>
 					<li><a href="{% url contact %}">Contact Us</a></li>
 				</ul>
 			</div>
