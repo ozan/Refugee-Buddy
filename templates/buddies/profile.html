@@ -11,8 +11,13 @@
 {% endblock extra_head %}
 
 {% block content %}
-	<div class="block-light alpha omega">
-	{{ buddy }}{# need to make exist #}
+
+	{% if buddy %}
+	{{ buddy }}
+	{% else %}
+	You don't have a profile yet. Please create one below.
+	{% endif %}
+
 
 	<div id="stylized" class="myform ">
 		<form method="post" id="form" name="form" action="" >
@@ -21,5 +26,5 @@
 			<input type="submit" name="submit" value="Submit" />
 		</form>
 	</div>
-	</div>
+
 {% endblock content %}
