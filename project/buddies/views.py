@@ -78,14 +78,19 @@ def profile(request, pk=None):
             return HttpResponseForbidden()
     else:
         try:
-            Buddy.objects.get(user=request.user)
+            Buddy.objects.get(user__id=request.user.id)
             return HttpResponseForbidden()
         except Buddy.DoesNotExist:
             pass
         instance = None
     
     if not instance and request.user.is_authenticated():
-        initial = {'name': request.user.username.replace('_', ' ')}
+        name = request.user.username.replace('_', ' ')
+        initial = {
+            'name': name,
+            'email': request.user.email,
+            'preferred_name': name.partition(' ')[0]
+        }
     else:
         initial = None
         
@@ -112,7 +117,7 @@ def my_detail(request):
             organisation = request.user.organisation.all()[0]
             return redirect(reverse('buddies_search'))
         except IndexError:
-            return HttpResponseForbidden('Not a buddy or an organisation. Who are you exactly?')
+            return redirect(reverse('buddies_create'))
         
 
 @login_required
