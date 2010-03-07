@@ -66,6 +66,7 @@ def search(request):
         'buddies_in_range': buddies_in_range
     }, context_instance=RequestContext(request))
 
+@login_required
 def profile(request, pk=None):
     """
     Create or edit a buddy profile
