@@ -47,10 +47,11 @@
 			<div class="grid_12 main-menu alpha omega">	
 				<ul>
 					<li class="first"><a href="{% url home %}">Home</a></li>
-					<li>{% if request.user.is_authenticated %}<a href="{% url buddies_my_detail %}">My Profile</a>{% else %}<a href="{% url signup %}">Sign up</a>{% endif %}</li>
-					{% if request.user.is_authenticated %}<li><a href="{% url messages %}">Messages</a></li>{% endif %}
-					{% if request.user.is_authenticated %}<li><a href="{% url resources %}">Resources</a></li>{% endif %}
+					<li>{% if request.user.is_authenticated %}<a href="{% if buddy %}{% url buddies_detail pk=buddy.pk %}{% else %}{% url buddies_create %}{% endif %}">My Profile</a>{% else %}<a href="{% url signup %}">Sign up</a>{% endif %}</li>
+					{% if request.user.is_authenticated %}<li><a href="#">Messages</a></li>{% endif %}
+					{% if request.user.is_authenticated %}<li><a href="#">Resources</a></li>{% endif %}
 					<li><a href="{% url contact %}">Contact Us</a></li>
+
 				</ul>
 			</div>
 		</div>
