@@ -20,13 +20,34 @@ class SearchForm(forms.Form):
     
     
 class MessageFormBase(forms.Form):
-    message = forms.CharField(widget=forms.Textarea(), required=True)
-    
+    pass
     
 class MessageForm(MessageFormBase):
-    pass
+    message = forms.CharField(widget=forms.Textarea(), required=True, initial='''Dear <name>,
+
+Would you like to help out doing .......
+
+If you are able to help, you would need to be able to ....
+
+Please reply with your email address and phone number so that we can get in touch with you.
+
+Kind regards,
+
+<name>''')
     
     
 class MessageResponseForm(MessageFormBase):
-    pass
+    message = forms.CharField(widget=forms.Textarea(), required=True, initial='''Dear <name>,
+
+Thankyou for your invitation to be part of your project.
+
+I would/would be able to commit to participating. Please contact me on the following:
+
+Phone: 
+Email: 
+
+Kind regards,
+
+<name>''')
+    
     
