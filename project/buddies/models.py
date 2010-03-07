@@ -13,7 +13,7 @@ class ParticipationLevel(BaseModel):
     """
     An indication of a willingness to participate to a certain level
     """
-    name = models.CharField(max_length=80)
+    name = models.CharField(max_length=200)
 
     class Meta(BaseModel.Meta):
         pass

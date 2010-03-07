@@ -4,11 +4,12 @@ from django.contrib import admin
 from django.views.generic.simple import direct_to_template
 
 from contact.views import contact
+from library.views import home
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', direct_to_template, {'template': 'static/home.html'}, name='home'),
+    url(r'^$', home, name='home'),
     url(r'^contact/$', contact, name='contact'),
     (r'^static/', include('library.urls')),
     (r'^accounts/', include('accounts.urls')),
