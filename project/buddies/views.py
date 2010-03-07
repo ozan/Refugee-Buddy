@@ -1,7 +1,10 @@
 from urllib import urlencode
 from urllib2 import urlopen
-import simplejson
-
+try:
+    import simplejson
+except ImportError:
+    from django.utils import simplejson
+    
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
@@ -103,11 +106,11 @@ def profile(request, pk=None):
 def my_detail(request):
     try:
         buddy = request.user.buddy.all()[0]
-        return redirect('buddies_detail', kwargs={'pk': buddy.pk})
+        return redirect(reverse('buddies_detail', kwargs={'pk': buddy.pk}))
     except IndexError:
         try:
             organisation = request.user.organisation.all()[0]
-            return redirect('buddies_search')
+            return redirect(reverse('buddies_search'))
         except IndexError:
             return HttpResponseForbidden('Not a buddy or an organisation. Who are you exactly?')
         

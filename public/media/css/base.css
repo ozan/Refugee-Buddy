@@ -12,6 +12,11 @@ body{
 	font:62.5% Arial, Helvetica, sans-serif;
 	padding:0;
 }
+
+strong {
+    font-weight: bold;
+}
+
 #container {
 	height:100%;
 	min-width:996px;
@@ -38,7 +43,8 @@ body{
 	background:#eee;
 }
 
-/*--Logo--*/
+
+/*--Logo--*/
 .logo-wrapper{
 	width:100%;
 	background: #ededed;
