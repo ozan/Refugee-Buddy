@@ -38,6 +38,11 @@ body{
 	background:#eee;
 }
 
+#warning-messages{
+/*	min-height:115px;*/
+	background:#eee;
+}
+
 /*--Logo--*/
 .logo-wrapper{
 	width:100%;
@@ -461,7 +466,7 @@ margin-bottom:20px;
 border-bottom:solid 1px #ccc;
 padding-bottom:10px;
 }
-#stylized label{
+label{
 display:block;
 font-weight:bold;
 text-align:right;
@@ -478,8 +483,7 @@ text-align:right;
 width:140px;
 }
 
-#stylized input{
-float:left;
+input{
 font-size:12px;
 padding:4px 2px;
 border:solid 1px #ccc;
