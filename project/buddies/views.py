@@ -63,7 +63,8 @@ def search(request):
         
     return render_to_response('buddies/search.html', {
         'form': form,
-        'buddies_in_range': buddies_in_range
+        'buddies_in_range': buddies_in_range,
+        'is_get': request.method == 'GET'
     }, context_instance=RequestContext(request))
 
 @login_required
