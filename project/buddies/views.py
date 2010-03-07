@@ -1,7 +1,10 @@
 from urllib import urlencode
 from urllib2 import urlopen
-import simplejson
-
+try:
+    import simplejson
+except ImportError:
+    from django.utils import simplejson
+    
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
@@ -112,7 +115,7 @@ def my_detail(request):
     except IndexError:
         try:
             organisation = request.user.organisation.all()[0]
-            return redirect('buddies_search')
+            return redirect(reverse('buddies_search'))
         except IndexError:
             return redirect(reverse('buddies_create'))
         
