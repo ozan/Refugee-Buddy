@@ -48,8 +48,8 @@
 				<ul>
 					<li class="first"><a href="{% url home %}">Home</a></li>
 					<li>{% if request.user.is_authenticated %}<a href="{% url buddies_my_detail %}">My Profile</a>{% else %}<a href="{% url signup %}">Sign up</a>{% endif %}</li>
-					<li>{% if request.user.is_authenticated %}<a href="#">Messages</a>{% endif %}</li>
-					<li>{% if request.user.is_authenticated %}<a href="#">Resources</a>{% endif %}</li>
+					<li>{% if request.user.is_authenticated %}<a href="{% url messages %}">Messages</a>{% endif %}</li>
+					<li>{% if request.user.is_authenticated %}<a href="{% url resources %}">Resources</a>{% endif %}</li>
 					<li><a href="{% url contact %}">Contact Us</a></li>
 				</ul>
 			</div>
@@ -72,10 +72,10 @@
 			<!-- #content -->
 			<div id="footer" class="grid_12 footer-menu alpha omega">
 				 <ul>
-					<li><a href="/" target="_blank">Terms and Conditions</a></li>
-					<li><a href="/" target="_blank">Disclaimer</a></li>
-					<li><a href="/" target="_blank">Privacy Policy </a></li>
-					<li><a href="/" target="_blank">Copyright</a></li>
+					<li><a href="{% url terms %}">Terms and Conditions</a></li>
+					<li><a href="{% url disclaimer %}">Disclaimer</a></li>
+					<li><a href="{% url privacy %}">Privacy Policy </a></li>
+					<li><a href="{% url copyright %}">Copyright</a></li>
 					<li><a href="{% url contact %}">Contact Us</a></li>
 				</ul>
 			</div>
