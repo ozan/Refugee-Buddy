@@ -615,3 +615,10 @@ margin: 0!important;
 
 /* Search Results table */
 
+.search-results table {width:90%;font-size:12px;margin:20px 10px;line-height:2.2;}
+.search-results table thead tr td{font-weight:bold;padding-bottom:10px;}
+
+.search-results table tbody tr.row-odd {background:#eee;}
+
+
+
