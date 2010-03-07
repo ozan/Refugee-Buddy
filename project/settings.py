@@ -152,3 +152,8 @@ GOOGLE_MAPS_API_KEY = {
 # A buddy will be blacklisted after this many organisations flag him/her.
 BUDDY_BLACKLIST_THRESHOLD = 1
 
+try:
+    # some sensitive settings are not in the public repo
+    import local_settings.py
+except ImportError:
+    pass
