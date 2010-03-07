@@ -76,12 +76,12 @@ def profile(request, pk=None):
         try:
             instance = request.user.buddy.get(pk=pk)
         except Buddy.DoesNotExist:
-            return HttpResponseForbidden()
+            return HttpResponseForbidden('You may not edit any profile other than your own.')
     else:
         try:
-            Buddy.objects.get(user__id=request.user.id)
-            return HttpResponseForbidden()
-        except Buddy.DoesNotExist:
+            request.user.buddy.all()[0]
+            return HttpResponseForbidden('You may only create one profile.')
+        except IndexError:
             pass
         instance = None
     
