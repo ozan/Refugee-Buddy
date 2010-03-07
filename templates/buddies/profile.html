@@ -13,13 +13,14 @@
 {% block content %}
 
 	{% if buddy %}
+	<div id="stylized" class="myform ">
 	{{ buddy }}
 	{% else %}
+	<div id="stylized" class="myform ">
 	You don't have a profile yet. Please create one below.
 	{% endif %}
 
 
-	<div id="stylized" class="myform ">
 		<form method="post" id="form" name="form" action="" >
 		{{ form.as_p }}
 		{% csrf_token %}
