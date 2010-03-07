@@ -82,7 +82,12 @@ def profile(request, pk=None):
         instance = None
     
     if not instance and request.user.is_authenticated():
-        initial = {'name': request.user.username.replace('_', ' ')}
+        name = request.user.username.replace('_', ' ')
+        initial = {
+            'name': name,
+            'email': request.user.email,
+            'preferred_name': name.partition(' ')[0]
+        }
     else:
         initial = None
         
@@ -103,13 +108,13 @@ def profile(request, pk=None):
 def my_detail(request):
     try:
         buddy = request.user.buddy.all()[0]
-        return redirect('buddies_detail', kwargs={'pk': buddy.pk})
+        return redirect(reverse('buddies_detail', kwargs={'pk': buddy.pk}))
     except IndexError:
         try:
             organisation = request.user.organisation.all()[0]
             return redirect('buddies_search')
         except IndexError:
-            return HttpResponseForbidden('Not a buddy or an organisation. Who are you exactly?')
+            return redirect(reverse('buddies_create'))
         
 
 @login_required

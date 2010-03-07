@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.widgets import *
 
 from models import Buddy
 
@@ -9,6 +10,9 @@ RADIUS_CHOICES = (
 )
 
 class ProfileForm(forms.ModelForm):
+    name = forms.CharField(widget=HiddenInput())
+    preferred_name = forms.CharField(max_length=80, label='You can call me')
+    email = forms.CharField(widget=HiddenInput())
 
     class Meta:
         exclude = ('user',)
