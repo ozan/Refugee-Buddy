@@ -1,10 +1,41 @@
 {% extends 'base.html' %}
 
+{% block title %}{{ buddy.preferred_name }}'s Refugee Buddy Profile{% endblock title %}
+
 {% block content %}
 
+
+	<h3>{{ buddy.name }}</h3>
+	<p>({{ buddy.preferred_name }})</p>
+<div class="grid_6 alpha block-light">
+	<h4>Age</h4>
+		<p>{{ buddy.age }}</p>
+		{{ buddy. }}
+		
+	<h4>Interests</h4>
+		<p>{{ buddy.interests }}</p>
+	<h4>Experience</h4>
+		<p>{{ buddy.experience }}</p>
+	<h4>Participation Level</h4>
+		<p>{{ buddy.participation_level }}</p>
+
+{# if it's your own profile #}
+	<p><a href="{% url buddies_edit buddy.pk %}">Edit Profile</a></p>
+{# #}
+</div>
+<div class="grid_6 omega block-light">
+		<h4>Location</h4>
+		<p>{{ buddy.location.address }}</p>
+		<p><img src="http://maps.google.com/maps/api/staticmap?center={{ buddy.location.latitude }},{{ buddy.location.longitude }}&zoom={{ buddy.location.adminzoom}}&size=400x250&maptype=terrain&markers=color:0xE035C0|{{ buddy.location.latitude }},{{ buddy.location.longitude }}&sensor=false"></p>
+
+		
+</div>
+
+
 {% if message_form %}
+<div class="grid_12 block-light alpha omega">
 <p>This page allows you to send {{ buddy }} a message,
-	requesting him to volunteer for you.
+	requesting they volunteer for you.
 	</p>
 
 <p>In the box below, please write a short description of
@@ -17,6 +48,7 @@
 {% csrf_token %}
 <input type="submit" name="submit" value="Submit" />
 </form>
+</div>
 {% endif %}
 
 {% endblock content %}
