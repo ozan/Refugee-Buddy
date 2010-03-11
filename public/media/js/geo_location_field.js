@@ -46,13 +46,16 @@ function initialize_geo_location_field(id, address, latitude, longitude, zoom, s
 		$(id + '_geo_location_field_address').change(function(){
 			var newAddress = $(id + '_geo_location_field_address').attr('value');
 			var geocoder = new GClientGeocoder();
-			
+
+		//favour Australian addresses when geocoding
+				geocoder.setBaseCountryCode('AU');
+
 			if(newAddress != '') {
 				geoEncodingCount++;
 				// Show geocoding in progress indicators
 				$(id +'_geo_location_field_encoding_msg').show();
 				$('div.submit-row').prepend('<p class="geo_location_field_encoding_msg" style="font-weight:bold; color: red;">Geo encoding your address, please wait....</p>');
-				
+
 				geocoder.getLatLng(newAddress, function(gLatLngPoint){
 					geoEncodingCount--;
 					// Hide geocoding in progress indicators
