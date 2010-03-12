@@ -27,12 +27,7 @@ class MessageFormBase(forms.Form):
     pass
     
 class MessageForm(MessageFormBase):
-    message = forms.CharField(widget=forms.Textarea(), required=True, initial='''Dear <name>,
-Would you like to help out doing .......
-If you are able to help, you would need to be able to ....
-Please reply with your email address and phone number so that we can get in touch with you.
-Kind regards,
-<name>''')
+    message = forms.CharField(widget=forms.Textarea(), required=True)
     
     
 class MessageResponseForm(MessageFormBase):
