@@ -463,6 +463,34 @@ padding:14px;
 }
 
 /* ----------- stylized ----------- */
+
+label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:140px;
+float:left;
+font-size:12px;
+color:#000000;
+margin:6px 0 0 0;
+}
+
+
+input{
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #ccc;
+width:200px;
+margin:2px 0 20px 10px;
+}
+
+.login-form p {
+color:#666666;
+display:block;
+font-size:11px;
+font-weight:normal;
+}
+
 #stylized{
 border:solid 2px #ccc;
 background:#ddd;
@@ -478,14 +506,7 @@ color:#666666;
 margin-bottom:20px;
 
 }
-label{
-display:block;
-font-weight:bold;
-text-align:right;
-width:140px;
-float:left;
-font-size:12px;
-}
+
 #stylized .small{
 color:#666666;
 display:block;
@@ -495,13 +516,6 @@ text-align:right;
 width:140px;
 }
 
-input{
-font-size:12px;
-padding:4px 2px;
-border:solid 1px #ccc;
-width:200px;
-margin:2px 0 20px 10px;
-}
 
 #stylized textarea {
 float:left;
