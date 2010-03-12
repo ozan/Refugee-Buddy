@@ -21,12 +21,25 @@ body{
 #login-bar {
 	min-height:15px;
 	margin:0 0 15px 0;
+	line-height:13px;
+	}
+
+#login-bar p {
+	padding:6px 6px 0 6px;
 	}
 	
 #account-tools {
-	background:#eee;
-	text-align:right;
+       background:#eee;
+       text-align:right;
+       width:105%;
+       height:30px;
+       -moz-border-radius:0 0px 4px 4px;
 }
+
+.shadow {-moz-box-shadow: -3px 0px 5px rgba(0,0,0,.2), 0px 0px 24px
+rgba(0,0,0,.2);-moz-border-radius:5px;
+}
+
 
 .block-dark{
 	background:#000;
