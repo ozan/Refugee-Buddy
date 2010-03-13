@@ -11,7 +11,7 @@
 {# show search form #}
 <ul class="buddy-search-form">
 <form action="" method="post">
-	{{ form.as_p }}
+	{{ form.as_ul }}
 	{% csrf_token %}
 	<input type="submit" value="search" />
 </form>
