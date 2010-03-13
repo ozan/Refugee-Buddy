@@ -24,7 +24,7 @@
 {% endfor %}
 {% if not is_get %}
 	<div class="search-results">
-	<div class="map-results"><img src="{{ MEDIA_URL }}/images/map.png" alt="map" /></div>
+	<div class="map-results"><img src="http://maps.google.com/maps/api/staticmap?center={{ buddy.location.latitude }},{{ buddy.location.longitude }}&zoom={{ buddy.location.adminzoom}}&size=900x250&maptype=terrain&markers=color:0xE035C0|{{ buddy.location.latitude }},{{ buddy.location.longitude }}&sensor=false" /></div>
 	<table>
 		<thead>
 			<tr>
@@ -38,12 +38,12 @@
 		</thead>
 		<tbody>
 			<tr class="row-odd">
-				<td class="row first name"><a href="{% url buddies_detail '1' %}">Andrew Smith</a></td>
-				<td class="row age">28</td>
-				<td class="row location">Sydney</td>
-				<td class="row interest">liquorice</td>
-				<td class="row experience">lots ofit</td>
-				<td class="row participation-level">Elevated</td>
+				<td class="row first name"><a href="{% url buddies_detail '1' %}">{{ buddy.name }}.</a></td>
+				<td class="row age">{{ buddy.age }}</td>
+				<td class="row location">{{ buddy.location.address }}</td>
+				<td class="row interest">{{ buddy.interests }}</td>
+				<td class="row experience">{{ buddy.experience }}</td>
+				<td class="row participation-level">{{ buddy.participation_level }}</td>
 			</tr>
 			<tr class="row-even">
 				<td class="row first name"><a href="{% url buddies_detail '1' %}">Andrew Smith</a></td>
@@ -53,36 +53,6 @@
 				<td class="row experience">lots ofit</td>
 				<td class="row participation-level">Elevated</td>
 			</tr>
-			{# <tr class="row-even"> #}
-			{# 	<td class="row first name"><a href="#">John Doe</a></td> #}
-			{# 	<td class="row age">28</td> #}
-			{# 	<td class="row email">john@doe.com</td> #}
-			{# 	<td class="row phone">0123456789</td> #}
-			{# 	<td class="row location">Sydney</td> #}
-			{# 	<td class="row interest">liquorice</td> #}
-			{# 	<td class="row experience">lots ofit</td> #}
-			{# 	<td class="row participation-level">Elevated</td> #}
-			{# </tr> #}
-			{# <tr class="row-odd"> #}
-			{# 	<td class="row name"><a href="#">John Doe</a></td> #}
-			{# 	<td class="row age">28</td> #}
-			{# 	<td class="row email">john@doe.com</td> #}
-			{# 	<td class="row phone">0123456789</td> #}
-			{# 	<td class="row location">Sydney</td> #}
-			{# 	<td class="row interest">liquorice</td> #}
-			{# 	<td class="row experience">lots ofit</td> #}
-			{# 	<td class="row participation-level">Elevated</td> #}
-			{# </tr> #}
-			{# <tr> #}
-			{# 	<td class="row name"><a href="#">John Doe</a></td> #}
-			{# 	<td class="row age">28</td> #}
-			{# 	<td class="row email">john@doe.com</td> #}
-			{# 	<td class="row phone">0123456789</td> #}
-			{# 	<td class="row location">Sydney</td> #}
-			{# 	<td class="row interest">liquorice</td> #}
-			{# 	<td class="row experience">lots ofit</td> #}
-			{# 	<td class="row participation-level">Elevated</td> #}
-			{# </tr> #}
 		</tbody>
 	</table>
 	</div>
