@@ -12,9 +12,9 @@
 							<div>
     	                        <h3>Refugee Buddy is a way for you to welcome people to your community from other cultures and countries.</h3>
                             </div>
-                            {% if request.user.is_authenticated %}<a href="{% url buddies_my_detail %}"><img src="{{ MEDIA_URL }}images/registerbutton.png" alt="Get Involved Now"/></a>{% else %}<a href="{% url signup %}"><img src="{{ MEDIA_URL }}images/registerbutton.png" alt="Get Involved Now"/></a>{% endif %}
+                            {% if request.user.is_authenticated %}<h4><a href="{% url buddies_my_detail %}">Fill in or update your profile</a></h4>{% else %}<a href="{% url signup %}"><img src="{{ MEDIA_URL }}images/registerbutton.png" alt="Get Involved Now"/></a>{% endif %}
                         	 
-                           
+                     <p>      
                             <h4>Questions</h4>
                             <ul>
                             <li><a href="{% url about %}">How can I help?</a></li>

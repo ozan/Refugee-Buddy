@@ -11,17 +11,18 @@
 {# show search form #}
 <ul class="buddy-search-form">
 <form action="" method="post">
-	{{ form.as_ul }}
+	{{ form.as_p }}
 	{% csrf_token %}
 	<input type="submit" value="search" />
 </form>
 </ul>
 {# output buddies #}
 {% for buddy in buddies_in_range %}
-{{ buddy }}
+{# do something #}
 {% empty %}
-nobody!
+{# blah #}
 {% endfor %}
+{% if not is_get %}
 	<div class="search-results">
 	<div class="map-results"><img src="{{ MEDIA_URL }}/images/map.png" alt="map" /></div>
 	<table>
@@ -29,8 +30,6 @@ nobody!
 			<tr>
 				<td class="row name">Full Name</td>
 				<td class="row age">Age</td>
-				<td class="row email">Email</td>
-				<td class="row phone">Phone</td>
 				<td class="row location">Location</td>
 				<td class="row interest">Interests</td>
 				<td class="row experience">Experience</td>
@@ -39,46 +38,45 @@ nobody!
 		</thead>
 		<tbody>
 			<tr class="row-odd">
-				<td class="row name"><a href="#">John Doe</a></td>
+				<td class="row name"><a href="{% url buddies_detail '1' %}">Andrew Smith</a></td>
 				<td class="row age">28</td>
-				<td class="row email">john@doe.com</td>
-				<td class="row phone">0123456789</td>
 				<td class="row location">Sydney</td>
 				<td class="row interest">liquorice</td>
 				<td class="row experience">lots ofit</td>
 				<td class="row participation-level">Elevated</td>
 			</tr>
-			<tr>
-				<td class="row name"><a href="#">John Doe</a></td>
-				<td class="row age">28</td>
-				<td class="row email">john@doe.com</td>
-				<td class="row phone">0123456789</td>
-				<td class="row location">Sydney</td>
-				<td class="row interest">liquorice</td>
-				<td class="row experience">lots ofit</td>
-				<td class="row participation-level">Elevated</td>
-			</tr>
-			<tr class="row-odd">
-				<td class="row name"><a href="#">John Doe</a></td>
-				<td class="row age">28</td>
-				<td class="row email">john@doe.com</td>
-				<td class="row phone">0123456789</td>
-				<td class="row location">Sydney</td>
-				<td class="row interest">liquorice</td>
-				<td class="row experience">lots ofit</td>
-				<td class="row participation-level">Elevated</td>
-			</tr>
-			<tr>
-				<td class="row name"><a href="#">John Doe</a></td>
-				<td class="row age">28</td>
-				<td class="row email">john@doe.com</td>
-				<td class="row phone">0123456789</td>
-				<td class="row location">Sydney</td>
-				<td class="row interest">liquorice</td>
-				<td class="row experience">lots ofit</td>
-				<td class="row participation-level">Elevated</td>
-			</tr>
+			{# <tr> #}
+			{# 	<td class="row name"><a href="#">John Doe</a></td> #}
+			{# 	<td class="row age">28</td> #}
+			{# 	<td class="row email">john@doe.com</td> #}
+			{# 	<td class="row phone">0123456789</td> #}
+			{# 	<td class="row location">Sydney</td> #}
+			{# 	<td class="row interest">liquorice</td> #}
+			{# 	<td class="row experience">lots ofit</td> #}
+			{# 	<td class="row participation-level">Elevated</td> #}
+			{# </tr> #}
+			{# <tr class="row-odd"> #}
+			{# 	<td class="row name"><a href="#">John Doe</a></td> #}
+			{# 	<td class="row age">28</td> #}
+			{# 	<td class="row email">john@doe.com</td> #}
+			{# 	<td class="row phone">0123456789</td> #}
+			{# 	<td class="row location">Sydney</td> #}
+			{# 	<td class="row interest">liquorice</td> #}
+			{# 	<td class="row experience">lots ofit</td> #}
+			{# 	<td class="row participation-level">Elevated</td> #}
+			{# </tr> #}
+			{# <tr> #}
+			{# 	<td class="row name"><a href="#">John Doe</a></td> #}
+			{# 	<td class="row age">28</td> #}
+			{# 	<td class="row email">john@doe.com</td> #}
+			{# 	<td class="row phone">0123456789</td> #}
+			{# 	<td class="row location">Sydney</td> #}
+			{# 	<td class="row interest">liquorice</td> #}
+			{# 	<td class="row experience">lots ofit</td> #}
+			{# 	<td class="row participation-level">Elevated</td> #}
+			{# </tr> #}
 		</tbody>
 	</table>
 	</div>
+{% endif %}
 {% endblock content %}

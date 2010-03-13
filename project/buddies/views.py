@@ -20,7 +20,7 @@ from models import Buddy, ContactLog
 
 from library.geo import points2distance
 
-GEOCODER_URL = 'http://maps.google.com/maps/geo?q=%s&output=json&sensor=false&key=' + settings.GOOGLE_MAPS_API_KEY    
+GEOCODER_URL = 'http://maps.google.com/maps/geo?q=%s&output=json&sensor=false&region=au&key=' + settings.GOOGLE_MAPS_API_KEY    
 
 def geocode(location_str):
     result = urlopen(GEOCODER_URL % urlencode({'q': location_str}))
@@ -63,7 +63,8 @@ def search(request):
         
     return render_to_response('buddies/search.html', {
         'form': form,
-        'buddies_in_range': buddies_in_range
+        'buddies_in_range': buddies_in_range,
+        'is_get': request.method == 'GET'
     }, context_instance=RequestContext(request))
 
 @login_required
@@ -100,7 +101,7 @@ def profile(request, pk=None):
         obj = form.save(commit=False)
         obj.user = request.user
         obj.save()
-        messages.success(request, 'Profile details have been updated')
+        messages.success(request, 'Thanks, Your buddy profile details have been updated')
         return redirect(reverse('buddies_detail', kwargs={'pk': obj.pk}))
 
     return render_to_response('buddies/profile.html', {
