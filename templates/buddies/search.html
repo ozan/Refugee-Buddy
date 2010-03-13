@@ -28,7 +28,7 @@
 	<table>
 		<thead>
 			<tr>
-				<td class="row name">Full Name</td>
+				<td class="row first name">Full Name</td>
 				<td class="row age">Age</td>
 				<td class="row location">Location</td>
 				<td class="row interest">Interests</td>
@@ -38,15 +38,23 @@
 		</thead>
 		<tbody>
 			<tr class="row-odd">
-				<td class="row name"><a href="{% url buddies_detail '1' %}">Andrew Smith</a></td>
+				<td class="row first name"><a href="{% url buddies_detail '1' %}">Andrew Smith</a></td>
 				<td class="row age">28</td>
 				<td class="row location">Sydney</td>
 				<td class="row interest">liquorice</td>
 				<td class="row experience">lots ofit</td>
 				<td class="row participation-level">Elevated</td>
 			</tr>
-			{# <tr> #}
-			{# 	<td class="row name"><a href="#">John Doe</a></td> #}
+			<tr class="row-even">
+				<td class="row first name"><a href="{% url buddies_detail '1' %}">Andrew Smith</a></td>
+				<td class="row age">28</td>
+				<td class="row location">Sydney</td>
+				<td class="row interest">liquorice</td>
+				<td class="row experience">lots ofit</td>
+				<td class="row participation-level">Elevated</td>
+			</tr>
+			{# <tr class="row-even"> #}
+			{# 	<td class="row first name"><a href="#">John Doe</a></td> #}
 			{# 	<td class="row age">28</td> #}
 			{# 	<td class="row email">john@doe.com</td> #}
 			{# 	<td class="row phone">0123456789</td> #}

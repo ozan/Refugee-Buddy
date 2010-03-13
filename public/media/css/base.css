@@ -644,7 +644,7 @@ box-shadow: 2px 2px 4px #999999;
 -webkit-box-shadow: 2px 2px 4px #999999;
 background-image: -webkit-gradient(linear, 0% 34%, 0% 74%, from(#B6CA3B), to(#9FB034), color-stop(.4,#99BC37));
 background-image: -moz-linear-gradient(19% 53% 90deg,#B6CA3B, #9FB034, #99BC37 100%);
-/*background-color:#B6CA3B;*/
+background-color:#B6CA3B;
 color: #fff;
 font-size: 14px;
 text-shadow:1px 1px 1px #333333;
@@ -653,12 +653,22 @@ width: 140px;
 cursor: pointer;
 }
 
-/* Search Results table */
 
-.search-results table {width:98%;font-size:12px;margin:20px 10px;line-height:2.2;}
-.search-results table thead tr td{font-weight:bold;padding-bottom:10px;}
+.map-results {text-align:center;width:96%;margin:0 auto;}
+/* Search Results table - Tom Bamford */
+
+.search-results table {width:96%;font-size:12px;margin:20px 20px;line-height:2.2;}
+.search-results table tr td {padding-left:10px;border-left:1px solid #ccc;}
+.search-results table tr td.first {border:none;}
+
+/* Table head styling */
+.search-results table thead {margin-bottom:10px;background:#bdbdbd;}
+.search-results table thead tr {font-weight:bold;padding-bottom:10px;}
+.search-results table thead tr {border-top:1px solid #999;border-bottom:1px solid #999;}
+
+/* Table body styling */
 .search-results table tr td a {color:#333b3e;}
-.search-results table tbody tr.row-odd {background:#e1e1e1;}
+.search-results table tbody tr.row-even {background:#e1e1e1;}
 
 
 
