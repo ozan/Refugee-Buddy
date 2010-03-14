@@ -19,20 +19,24 @@
 	<div class="search-results">
 
 {# output buddies #}
+<div class="map-results">
 {% for buddy in buddies_in_range %}
-	{% if forloop.first %}<div class="map-results"><img src="http://maps.google.com/maps/api/staticmap?center={{ buddy.location.latitude }},{{ buddy.location.longitude }}&zoom={{ buddy.location.adminzoom}}&size=900x350&maptype=terrain&markers=color:0xE035C0|{{ buddy.location.latitude }},{{ buddy.location.longitude }}
+	
+	{% if forloop.first %}<img src="http://maps.google.com/maps/api/staticmap?center={{ buddy.location.latitude }},{{ buddy.location.longitude }}&zoom={{ buddy.location.adminzoom}}&size=900x350&maptype=terrain&markers=color:0xE035C0|{{ buddy.location.latitude }},{{ buddy.location.longitude }}
 	{% else %}&markers=color:0xE035C0|{{ buddy.location.latitude }},{{ buddy.location.longitude }}
-		{% if forloop.last %}&sensor=false" /></div>
-		{% endif %}
+	{% endif %}
+	{% if forloop.last %}&sensor=false" />
 	{% endif %}
 {% endfor %}
+</div>
 
-{% for buddy in buddies_in_range %}
-
-{% if forloop.first %}	
 	<table>
 		<thead>
 			<tr>
+{% for buddy in buddies_in_range %}
+
+{% if forloop.first %}	
+
 				<td class="row first name">Full Name</td>
 				<td class="row age">Age</td>
 				<td class="row location">Location</td>
