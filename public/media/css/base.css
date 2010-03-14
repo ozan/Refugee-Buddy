@@ -36,8 +36,10 @@ body{
        -moz-border-radius:0 0px 4px 4px;
 }
 
-.shadow {-moz-box-shadow: -3px 0px 5px rgba(0,0,0,.2), 0px 0px 24px
-rgba(0,0,0,.2);-moz-border-radius:5px;
+.shadow {-moz-box-shadow: -3px 0px 5px rgba(0,0,0,.2), 0px 0px 24px rgba(0,0,0,.2);
+	-webkit-box-shadow: -3px 0px 5px rgba(0,0,0,.2), 0px 0px 24px rgba(0,0,0,.2);
+	box-shadow: -3px 0px 5px rgba(0,0,0,.2), 0px 0px 24px rgba(0,0,0,.2);
+	-moz-border-radius:5px;
 }
 
 
