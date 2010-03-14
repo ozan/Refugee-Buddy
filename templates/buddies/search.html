@@ -16,15 +16,20 @@
 	<input type="submit" value="search" />
 </form>
 </ul>
+	<div class="search-results">
+
 {# output buddies #}
 {% for buddy in buddies_in_range %}
-{# do something #}
-{% empty %}
-{# blah #}
+	{% if forloop.first %}<div class="map-results"><img src="http://maps.google.com/maps/api/staticmap?center={{ buddy.location.latitude }},{{ buddy.location.longitude }}&zoom={{ buddy.location.adminzoom}}&size=900x350&maptype=terrain&markers=color:0xE035C0|{{ buddy.location.latitude }},{{ buddy.location.longitude }}
+	{% else %}&markers=color:0xE035C0|{{ buddy.location.latitude }},{{ buddy.location.longitude }}
+		{% if forloop.last %}&sensor=false" /></div>
+		{% endif %}
+	{% endif %}
 {% endfor %}
-{% if not is_get %}
-	<div class="search-results">
-	<div class="map-results"><img src="http://maps.google.com/maps/api/staticmap?center={{ buddy.location.latitude }},{{ buddy.location.longitude }}&zoom={{ buddy.location.adminzoom}}&size=900x250&maptype=terrain&markers=color:0xE035C0|{{ buddy.location.latitude }},{{ buddy.location.longitude }}&sensor=false" /></div>
+
+{% for buddy in buddies_in_range %}
+
+{% if forloop.first %}	
 	<table>
 		<thead>
 			<tr>
@@ -37,24 +42,31 @@
 			</tr>
 		</thead>
 		<tbody>
+			<tr class="row-even">
+{% else %}
+
+	{% if forloop.counter|divisibleby:2 %}
 			<tr class="row-odd">
-				<td class="row first name"><a href="{% url buddies_detail '1' %}">{{ buddy.name }}.</a></td>
+	{% else %}
+			<tr class="row-even">
+	{% endif %}
+{% endif %}
+				<td class="row first name"><a href="{% url buddies_detail '1' %}">{{ buddy.name }}</a></td>
 				<td class="row age">{{ buddy.age }}</td>
 				<td class="row location">{{ buddy.location.address }}</td>
 				<td class="row interest">{{ buddy.interests }}</td>
 				<td class="row experience">{{ buddy.experience }}</td>
 				<td class="row participation-level">{{ buddy.participation_level }}</td>
 			</tr>
-			<tr class="row-even">
-				<td class="row first name"><a href="{% url buddies_detail '1' %}">Andrew Smith</a></td>
-				<td class="row age">28</td>
-				<td class="row location">Sydney</td>
-				<td class="row interest">liquorice</td>
-				<td class="row experience">lots ofit</td>
-				<td class="row participation-level">Elevated</td>
-			</tr>
-		</tbody>
+{% if forloop.last %}
+			</tbody>
 	</table>
+
+{% endif %}			
+{% empty %}
+{# blah #}
+{% endfor %}
 	</div>
+{% if not is_get %}
 {% endif %}
 {% endblock content %}
